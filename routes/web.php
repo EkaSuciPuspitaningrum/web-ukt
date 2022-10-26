@@ -26,73 +26,8 @@ use App\Http\Controllers\CandidateMandiriController;
 */
 
 Route::redirect('/', '/login');
-
-// Auth
-Route::get('/login', function () {
-    return view('halaman.login');
-})->name('login');
-
-Route::post('actionlogin', [LoginController::class,'actionlogin'])->name('actionlogin');
-Route::get('actionlogout', [LoginController::class,'actionlogout'])->name('actionlogout');
-
-Route::middleware(['auth', 'admin'])->group(function () {    
-    // Dashboard
-    Route::get('/dashboard', function () {
-        return view('halaman.dashboard', ['type_menu' => 'dashboard']);
-    })->name('dashboard');
-
-
-    
-    // Prestasi
-    Route::get('/candidates-prestasi', [CandidatePresController::class,'render']);
-    Route::post('/candidates-prestasi', [CandidatePresController::class,'import']);
-    
-    Route::post('/cancelCanPres', [CandidatePresController::class,'cancelprestasi'])->name('cancelCanPres');
-    Route::post('/saveCanPres', [CandidatePresController::class,'saveprestasi'])->name('saveCanPres');
-
-
-    Route::get('/prodi-prestasi', [ProdiPresController::class,'render']);
-    Route::post('/prodi-prestasi', [ProdiPresController::class,'import']);
-    
-    Route::post('/cancelProPres', [ProdiPresController::class,'cancel'])->name('cancelProPres');
-    Route::post('/saveProPres', [ProdiPresController::class,'save'])->name('saveProPres');
-
-    Route::get('/preview-prestasi', [PreviewPresController::class,'render']);
-
-
-    //Tes
-    Route::get('/candidates-tes', [CandidateTesController::class,'render']);
-    Route::post('/candidates-tes', [CandidateTesController::class,'import']);
-    
-    Route::post('cancelCanTes', [CandidateTesController::class,'cancel'])->name('cancelCanTes');
-    Route::post('saveCanTes', [CandidateTesController::class,'save'])->name('saveCanTes');
-
-    Route::get('/prodi-tes', [ProdiTesController::class,'render']);
-    Route::post('/prodi-tes', [ProdiTesController::class,'import']);
-    
-    Route::post('cancelProTes', [ProdiTesController::class,'cancel'])->name('cancelProTes');
-    Route::post('saveProTes', [ProdiTesController::class,'save'])->name('saveProTes');
-
-    Route::get('/preview-tes', [PreviewTesController::class,'render']);
-
-
-
-
-    //Mandiri
-    Route::get('/candidates-mandiri', [CandidateMandiriController::class,'render']);
-    Route::post('/candidates-mandiri', [CandidateMandiriController::class,'import']);
-
-    Route::post('cancelmandiri', [CandidateMandiriController::class,'cancelmandiri'])->name('cancelmandiri');
-    Route::post('savemandiri', [CandidateMandiriController::class,'savemandiri'])->name('savemandiri');
-
-    Route::get('/prodi-mandiri', [ProdiMandiriController::class,'render']);
-    Route::post('/prodi-mandiri', [ProdiMandiriController::class,'import']);
-
-    Route::post('cancelProMan', [ProdiMandiriController::class,'cancelprodimandiri'])->name('cancelProMan');
-    Route::post('saveProMan', [ProdiMandiriController::class,'saveprodimandiri'])->name('saveProMan');
-
-
-    Route::get('/preview-mandiri', [PreviewMandiriController::class,'render']);
+Route::get('/auth-login', function () {
+    return view('pages.auth-login', ['type_menu' => 'auth']);
 });
 
 

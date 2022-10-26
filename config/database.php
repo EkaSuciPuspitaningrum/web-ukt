@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mongodb'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,14 +72,14 @@ return [
         //     'password' => env('DB_PASSWORD', '')
         //   ],
 
-          'mongodb' => [
-            'driver' => 'mongodb',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE', 'eval'),
-            'username' => env('DB_USERNAME', ''),
-            'password' => env('DB_PASSWORD', '')
-          ],
+        //   'mongodb' => [
+        //     'driver' => 'mongodb',
+        //     'host' => env('DB_HOST', '127.0.0.1'),
+        //     'port' => env('DB_PORT', 27017),
+        //     'database' => env('DB_DATABASE', 'eval'),
+        //     'username' => env('DB_USERNAME', ''),
+        //     'password' => env('DB_PASSWORD', '')
+        //   ],
 
         'pgsql' => [
             'driver' => 'pgsql',
