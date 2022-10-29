@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
-    <title>@yield('title') &mdash; PMB</title>
+    <title>@yield('title') &mdash; Pengajuan Keringanan UKT</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet"
@@ -36,12 +36,35 @@
 
         gtag('config', 'UA-94034622-3');
     </script>
-    <!-- END GA -->
+    <style>
+        .bg {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+        -45deg, 
+        rgba(59,173,227,1) 0%, 
+        rgba(87,111,230,1) 25%, 
+        rgba(152,68,183,1) 51%, 
+        rgba(255,53,127,1) 100%
+  );  
+  animation: AnimateBG 20s ease infinite;
+}
+
+@keyframes AnimateBG { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <section class="section">
+        <section class="section bg">
             <div class="container mt-5">
                 <div class="row">
                     <div
@@ -52,8 +75,6 @@
                         <!-- Content -->
                         @yield('main')
 
-                        <!-- Footer -->
-                        @include('components.auth-footer')
                     </div>
                 </div>
             </div>
