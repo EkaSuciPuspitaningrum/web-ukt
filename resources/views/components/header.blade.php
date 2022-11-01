@@ -1,6 +1,6 @@
 <div class="navbar-bg"></div>
 <nav class="navbar navbar-expand-lg main-navbar">
-    <form class="form-inline mr-auto">
+    {{-- <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
             <li><a href="#"
                     data-toggle="sidebar"
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> --}}
     <ul class="navbar-nav navbar-right">
         <!-- <li class="dropdown dropdown-list-toggle"><a href="#"
                 data-toggle="dropdown"
@@ -173,7 +173,7 @@
                 </div>
             </div>
         </li> -->
-        <li class="dropdown"><a href="#"
+        {{-- <li class="dropdown"><a href="#"
                 data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image"
@@ -196,6 +196,6 @@
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
-        </li>
+        </li> --}}
     </ul>
 </nav>

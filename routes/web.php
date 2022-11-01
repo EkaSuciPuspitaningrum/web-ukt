@@ -24,6 +24,20 @@ Route::get('/daftar', function () {
 });
 
 
+Route::get('/dashboard', function () {
+    return view('halaman-mahasiswa.dashboard-mahasiswa', ['type_menu' => 'halaman-mahasiswa']);
+});
+
+Route::get('/import-berkas', function () {
+    return view('halaman-mahasiswa.import-pengajuan', ['type_menu' => 'halaman-mahasiswa']);
+});
+
+Route::get('/akun-mahasiswa', function () {
+    return view('halaman-mahasiswa.akun', ['type_menu' => 'halaman-mahasiswa']);
+});
+
+
+
 /*
 |--------------------------------------------------------------------------
 | INI TEMPLATE ROUTES

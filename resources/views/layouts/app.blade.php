@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
-    <title>@yield('title') &mdash; Evaluasi PMB</title>
+    {{-- <title>@yield('title') &mdash; Pengajuan UKT</title> --}}
+    <title>Pengajuan UKT</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet"
@@ -47,7 +48,7 @@
             @include('components.header')
 
             <!-- Sidebar -->
-            @include('components.sidebar')
+            @include('components.sidebar-mahasiswa')
 
             <!-- Content -->
             @yield('main')
