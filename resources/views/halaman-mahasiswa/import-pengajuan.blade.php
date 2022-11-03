@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Default Layout')
+@section('title', 'Upload Berkas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -17,7 +17,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Import Berkas</h1>
+            <h1>Upload Berkas</h1>
         </div>
         <div class="card">
             <div class="card-header">

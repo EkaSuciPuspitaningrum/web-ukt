@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Default Layout')
+@section('title', 'Dashboard')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -16,36 +16,115 @@
             <h1>Dashboard</h1>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-12 col-lg-7">
-                <div class="card author-box card-primary">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h4>Berkas Pengajuan</h4>
+                    </div>
                     <div class="card-body">
-                        <div class="author-box-left">
-                            <img alt="image"
-                                src="{{ asset('img/avatar/avatar-1.png') }}"
-                                class="rounded-circle author-box-picture">
-                            <div class="clearfix"></div>
-                            <a href="#"
-                                class="btn btn-primary follow-btn mt-3"
-                                data-follow-action="alert('follow clicked');"
-                                data-unfollow-action="alert('unfollow clicked');">Follow</a>
-                        </div>
-                        <div class="author-box-details">
-                            <div class="author-box-name">
-                                <a href="#">Hasan Basri</a>
-                            </div>
-                            <div class="author-box-job">Web Developer</div>
-                            <div class="author-box-description">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat.</p>
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table-striped table"
+                                id="table-1">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        <th>NIM</th>
+                                        <th>Nama</th>
+                                        <th>Tanggal Pengajuan</th>
+                                        <th>Status</th>
+                                        <th>Lihat Berkas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>Input data</td>
+                                        <td class="align-middle">
+                                            <div class="progress"
+                                                data-height="4"
+                                                data-toggle="tooltip"
+                                                title="100%">
+                                                <div class="progress-bar bg-success"
+                                                    data-width="100%"></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img alt="image"
+                                                src="{{ asset('img/avatar/avatar-2.png') }}"
+                                                class="rounded-circle"
+                                                width="35"
+                                                data-toggle="tooltip"
+                                                title="Rizal Fakhri">
+                                            <img alt="image"
+                                                src="{{ asset('img/avatar/avatar-5.png') }}"
+                                                class="rounded-circle"
+                                                width="35"
+                                                data-toggle="tooltip"
+                                                title="Isnap Kiswandi">
+                                            <img alt="image"
+                                                src="{{ asset('img/avatar/avatar-4.png') }}"
+                                                class="rounded-circle"
+                                                width="35"
+                                                data-toggle="tooltip"
+                                                title="Yudi Nawawi">
+                                            <img alt="image"
+                                                src="{{ asset('img/avatar/avatar-1.png') }}"
+                                                class="rounded-circle"
+                                                width="35"
+                                                data-toggle="tooltip"
+                                                title="Khaerul Anwar">
+                                        </td>
+                                        <td>
+                                            <div class="badge badge-success">Completed</div>
+                                        </td>
+                                        <td><button class="btn btn-primary"
+                                            data-toggle="modal"
+                                            data-target="#exampleModal">Lihat</button>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>    
+                </div>
+            </div>
         </div>
         </section>
     </div>
+
+
+<div class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    id="exampleModal">
+    <div class="modal-dialog"
+        role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal">Close</button>
+                <button type="button"
+                    class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')

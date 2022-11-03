@@ -14,7 +14,7 @@
 
             <li class="{{ Request::is('akun-mahasiswa') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ url('akun-mahasiswa') }}"><i class="far fa-solid fa-user"></i><span>Biodata Mahasiswa</span></a>
+                    href="{{ url('akun-mahasiswa') }}"><i class="far fa-solid fa-user"></i><span>Akun Mahasiswa</span></a>
             </li>
 
             <li class="{{ Request::is('import-berkas') ? 'active' : '' }}">
