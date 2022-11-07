@@ -21,14 +21,14 @@
                     <div class="card-body">
                         <div class="author-box-left">
                             <img alt="image"
-                                src="{{ asset('img/avatar/avatar-1.png') }}"
+                                href="{{auth()->user()->foto}}"
                                 class="rounded-circle author-box-picture">
                             <div class="clearfix"></div>
                             <br>
                             <div class="author-box-name">
-                                <a href="#">Hasan Basri</a>
+                                <a href="#">{{auth()->user()->username}}</a>
                             </div>
-                            <div class="author-box-job">Web Developer</div>
+                            <div class="author-box-job">{{auth()->user()->nim}}</div>
                         </div>
                         &nbsp;
                         <div class="author-box-details">
@@ -42,8 +42,8 @@
                                           <label for="nama">NIM</label>
                                           <input type="text"
                                               class="form-control"
-                                              id="nama"
-                                              placeholder="Nama Lengkap">
+                                              id="nim"
+                                              placeholder="nim" {{auth()->user()->nim}}>
                                       </div>
                                       <div class="form-group col-md-6">
                                         <label for="nama">Foto</label>
@@ -57,22 +57,22 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Nama Lengkap</label>
-                                        <input id="email" type="email" class="form-control" name="email">
+                                        <input id="email" type="username" class="form-control" name="username" {{auth()->user()->username}}>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nama">Email</label>
                                             <input type="text"
                                                 class="form-control"
-                                                id="nama"
-                                                placeholder="Nama Lengkap">
+                                                id="email"
+                                                placeholder="Email" {{auth()->user()->email}}>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="nama">Password</label>
                                             <input type="text"
                                                 class="form-control"
-                                                id="nama"
-                                                placeholder="Nama Lengkap">
+                                                id="password"
+                                                placeholder="Password">
                                         </div>
                                     </div> 
                                     <br><br>

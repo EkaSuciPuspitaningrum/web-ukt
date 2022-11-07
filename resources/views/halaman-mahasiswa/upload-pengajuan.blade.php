@@ -19,13 +19,26 @@
         <div class="section-header">
             <h1>Upload Berkas</h1>
         </div>
+
+        @if (session('berhasil'))
+            <div class="alert alert-primary alert-dismissible show fade">
+            <div class="alert-body">
+                <button class="close"
+                    data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+                {{ session('berhasil') }}
+            </div>
+            </div>
+        @endif
+        
         <div class="card">
             <div class="card-header">
                 <h4>Form Pengisian Berkas</h4>
             </div>
             <div class="card-body">
-                <form action="" method="post">
-
+                <form method="post" action="{{ url('/berkas') }}"  enctype="multipart/form-data">
+                @csrf
                     <div class="section-title mt-0">Data Diri</div>
                     <br>
                     <div class="form-row">
@@ -34,70 +47,78 @@
                             <input type="text"
                                 class="form-control"
                                 id="nama"
-                                placeholder="Nama Lengkap">
+                                name="nama"
+                                placeholder="Nama Lengkap" required>
+
                         </div>
                         <div class="form-group col-md-6">
                             <label for="email">Email</label>
                             <input type="text"
                                 class="form-control"
                                 id="email"
-                                placeholder="Email">
+                                name="email"
+                                placeholder="Email" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="nama">NIM</label>
+                            <label for="nim_berkas">NIM</label>
                             <input type="text"
                                 class="form-control"
-                                id="nama"
-                                placeholder="Nama Lengkap">
+                                id="nim_berkas"
+                                name="nim_berkas"
+                                placeholder="NIM" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="nama">Kelas</label>
+                            <label for="kelas">Kelas</label>
                             <input type="text"
                                 class="form-control"
-                                id="nama"
-                                placeholder="Nama Lengkap">
+                                id="kelas"
+                                name="kelas"
+                                placeholder="Kelas" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label>Jurusan</label>
-                            <select class="form-control">
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
-                            </select>
+                            <label for="jurusan">Jurusan</label>
+                            <select class="form-control" id="jurusan" name="jurusan">
+                                @foreach ($jurusan as $jurusans)
+                                    <option value="{{ $jurusans->id }}">{{ $jurusans->jurusan_name }}</option>
+                                @endforeach
+                            </select required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label>Program Studi</label>
-                            <select class="form-control">
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
-                            </select>
+                            <label for="prodi">Program Studi</label>
+                            <select class="form-control" id="prodi" name="prodi">
+                                @foreach ($prodi as $prodis)
+                                    <option value="{{ $prodis->id }}">{{ $prodis->prodi_name }}</option>
+                                @endforeach
+                            </select required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nama">Alamat</label>
+                            <label for="alamat">Alamat</label>
                             <input type="text"
                                 class="form-control"
-                                id="nama"
-                                placeholder="Nama Lengkap">
+                                id="alamat"
+                                name="alamat"
+                                placeholder="Alamat" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="nama">Kota</label>
+                            <label for="kota">Kota</label>
                             <input type="text"
                                 class="form-control"
-                                id="nama"
-                                placeholder="Nama Lengkap">
+                                id="kota"
+                                name="kota"
+                                placeholder="Kota" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="email">Kode Pos</label>
+                            <label for="kodepos">Kode Pos</label>
                             <input type="text"
                                 class="form-control"
-                                id="email"
-                                placeholder="Email">
+                                id="kodepos"
+                                name="kodepos"
+                                placeholder="Kode Pos" required>
                         </div>
                     </div>
                     <br>
@@ -105,96 +126,82 @@
                     <br>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nama">Nama Lengkap Ayah</label>
+                            <label for="ayah">Nama Lengkap Ayah</label>
                             <input type="text"
                                 class="form-control"
-                                id="nama"
-                                placeholder="Nama Lengkap">
+                                id="ayah"
+                                name="ayah"
+                                placeholder="Nama Lengkap Ayah" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="nama">Pekerjaan Ayah</label>
+                            <label for="kerja_ayah">Pekerjaan Ayah</label>
                             <input type="text"
                                 class="form-control"
-                                id="nama"
-                                placeholder="Nama Lengkap">
+                                id="kerja_ayah"
+                                name="kerja_ayah"
+                                placeholder="Pekerjaan Ayah" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="email">Nomor Telepon Ayah</label>
+                            <label for="telp_ayah">Nomor Telepon Ayah</label>
                             <input type="text"
                                 class="form-control"
-                                id="email"
-                                placeholder="Email">
+                                id="telp_ayah"
+                                name="telp_ayah"
+                                placeholder="Nomor Telepon Ayah" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nama">Nama Lengkap Ibu</label>
+                            <label for="ibu">Nama Lengkap Ibu</label>
                             <input type="text"
                                 class="form-control"
-                                id="nama"
-                                placeholder="Nama Lengkap">
+                                id="ibu"
+                                name="ibu"
+                                placeholder="Nama Lengkap Ibu" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="nama">Pekerjaan Ibu</label>
+                            <label for="kerja_ibu">Pekerjaan Ibu</label>
                             <input type="text"
                                 class="form-control"
-                                id="nama"
-                                placeholder="Nama Lengkap">
+                                id="kerja_ibu"
+                                name="kerja_ibu"
+                                placeholder="Pekerjaan Ibu" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="email">Nomor Telepon Ibu</label>
+                            <label for="telp_ibu">Nomor Telepon Ibu</label>
                             <input type="text"
                                 class="form-control"
-                                id="email"
-                                placeholder="Email">
+                                id="telp_ibu"
+                                name="telp_ibu"
+                                placeholder="Nomor Telepon Ibu" required>
                         </div>
                     </div>
                     <br>
-                    <div class="section-title mt-0">Import Berkas</div>
+                    <div class="section-title mt-0">Upload Berkas</div>
                     <br>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nama">KTM (Scan - PDF)</label>
+                            <label for="nama">Scan Berkas (PDF _ KTM, KK, KTP, Slip Gaji Orangtua)</label>
                             <div class="custom-file">
                                 <div class="input-group mb-3">
-                                    <label style="color: white" class="input-group-text btn btn-primary"  for="customFile" >Upload</label>
-                                    <input type="file" class="choose form-control" id="customFile">
+                                    <label style="color: white" class="input-group-text btn btn-primary"  for="berkas" >Upload</label>
+                                    <input type="file" class="choose form-control" id="berkas" name="berkas" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="nama">Kartu Keluarga (Scan - PDF)</label>
+                            <label for="nama">Foto Rumah (bagian luar dan dalam)</label>
                             <div class="custom-file">
                                 <div class="input-group mb-3">
-                                    <label style="color: white" class="input-group-text btn btn-primary"  for="customFile" >Upload</label>
-                                    <input type="file" class="choose form-control" id="customFile">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="nama">Slip Gaji Orang Tua (Scan - PDF)</label>
-                            <div class="custom-file">
-                                <div class="input-group mb-3">
-                                    <label style="color: white" class="input-group-text btn btn-primary"  for="customFile" >Upload</label>
-                                    <input type="file" class="choose form-control" id="customFile">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="nama">Foto Rumah (Bagian Luar dan Dalam - File:PDF)</label>
-                            <div class="custom-file">
-                                <div class="input-group mb-3">
-                                    <label style="color: white" class="input-group-text btn btn-primary"  for="customFile" >Upload</label>
-                                    <input type="file" class="choose form-control" id="customFile">
+                                    <label style="color: white" class="input-group-text btn btn-primary"  for="foto" >Upload</label>
+                                    <input type="file" class="choose form-control" id="foto" name="foto" required>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    <button class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                 </div>
 
                 </form>

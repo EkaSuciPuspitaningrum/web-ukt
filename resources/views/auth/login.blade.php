@@ -9,63 +9,59 @@
 @endpush
 
 @section('main')
-    <div class="card card-primary">
-        <div class="card-header">
-            <h4>Login</h4>
-        </div>
-
-        <div class="card-body">
-            <form method="POST"
-                action="#"
-                class="needs-validation"
-                novalidate="">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email"
-                        type="email"
-                        class="form-control"
-                        name="email"
-                        tabindex="1"
-                        required
-                        autofocus>
-                    <div class="invalid-feedback">
-                        Please fill in your email
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="d-block">
-                        <label for="password"
-                            class="control-label">Password</label>
-                    </div>
-                    <input id="password"
-                        type="password"
-                        class="form-control"
-                        name="password"
-                        tabindex="2"
-                        required>
-                    <div class="invalid-feedback">
-                        please fill in your password
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit"
-                        class="btn btn-primary btn-lg btn-block"
-                        tabindex="4">
-                        Login
-                    </button>
-                </div>
-
-                <div class="float-right">
-                    <a href="{{url("/daftar")}}"
-                        class="text-small">
-                        Belum punya akun?
-                    </a>
-                </div>
-            </form>
+@if(session()->has('error'))
+    <div class="alert alert-danger alert-dismissible show fade">
+        <div class="alert-body">
+            <button class="close"
+                data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        {{session('error')}}
         </div>
     </div>
+@endif
+<div class="card card-primary">
+    <div class="card-header">
+        <h4>Login</h4>
+    </div>
+    <div class="card-body">
+    
+        <form method="post" action="{{ route('login.perform') }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+            @include('layouts.partials.messages')
+    
+            <div class="form-group form-floating mb-3">
+                <label for="floatingName">Email</label>
+                <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required="required" autofocus>
+                @if ($errors->has('email'))
+                    <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                @endif
+            </div>
+            
+            <div class="form-group form-floating mb-3">
+                <label for="floatingPassword">Password</label>
+                <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required="required">
+                @if ($errors->has('password'))
+                    <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
+    
+            {{-- <div class="form-group mb-3">
+                <input type="checkbox" name="remember" value="1">
+                <label for="remember">Remember me</label>
+            </div> --}}
+    
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        </form>
+        <br>
+        <div class="float-right">
+            <a href="{{route("register.show")}}"
+                class="text-medium">
+                Belum punya akun?
+            </a>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')

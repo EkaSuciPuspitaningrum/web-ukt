@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('prodi', function (Blueprint $table) {
             $table->id();
+            $table->string('prodi_name');
+            $table->unsignedBigInteger('jurusan_id');
             $table->timestamps();
+
+            $table->foreign('jurusan_id')->references('id')->on('jurusan');
         });
     }
 

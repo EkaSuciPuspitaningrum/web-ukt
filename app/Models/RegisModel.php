@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Prodi extends Model 
+class RegisModel extends Model 
 
 {
     use HasFactory; 
 
-    protected $table = "prodi";
+    protected $table = "users";
     protected $fillable =[
-        'prodi_name', 
+        'nim', 
+        'nama',
+        'email',
+        'password',
     ];
+
 }

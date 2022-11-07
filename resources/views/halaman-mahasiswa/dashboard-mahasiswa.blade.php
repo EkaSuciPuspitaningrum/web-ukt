@@ -15,6 +15,17 @@
         <div class="section-header">
             <h1>Dashboard</h1>
         </div>
+        @if (session('berhasil'))
+        <div class="alert alert-primary alert-dismissible show fade">
+        <div class="alert-body">
+            <button class="close"
+                data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            {{ session('status') }}
+        </div>
+        </div>
+    @endif
         <div class="row">
             <div class="col-12">
                 <div class="card card-primary">
@@ -23,70 +34,61 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table-striped table"
-                                id="table-1">
+                            <table class="table-bordered table display nowrap" id="table" style="width: 110%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            #
-                                        </th>
-                                        <th>NIM</th>
+                                        <th>No</th>
+                                        <th>tanggal Pengajuan</th>
                                         <th>Nama</th>
-                                        <th>Tanggal Pengajuan</th>
-                                        <th>Status</th>
-                                        <th>Lihat Berkas</th>
-                                    </tr>
+                                        <th>Email</th>
+                                        <th>Nim</th>
+                                        <th>Kelas</th>
+                                        <th>Jurusan</th>
+                                        <th>Prodi</th>
+                                        <th>Alamat</th>
+                                        <th>Kota</th>
+                                        <th>Kode Pos</th>
+                                        <th>Nama Ayah</th>
+                                        <th>Kerja Ayah</th>
+                                        <th>Telp Ayah</th>
+                                        <th>Ibu</th>
+                                        <th>Kerja Ibu</th>
+                                        <th>Telp Ibu</th>
+                                        <th>Berkas</th>
+                                        <th>Foto</th>
+                                        <th>Detail</th>
+                                      </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($posts as $p => $data) 
                                     <tr>
+                                        <td>{{ $p + $posts->firstItem()}}</td>
+                                        <td>{{$data->created_at}}</td>
+                                        <td>{{$data->nama}}</td>
+                                        <td>{{$data->email}}</td>
+                                        <td>{{$data->nim_berkas}}</td>
+                                        <td>{{$data->kelas}}</td>
+                                        <td>{{$data->jurusan}}</td>
+                                        <td>{{$data->prodi}}</td>
+                                        <td>{{$data->alamat}}</td>
+                                        <td>{{$data->kota}}</td>
+                                        <td>{{$data->kodepos}}</td>
+                                        <td>{{$data->ayah}}</td>
+                                        <td>{{$data->kerja_ayah}}</td>
+                                        <td>{{$data->telp_ayah}}</td>
+                                        <td>{{$data->ibu}}</td>
+                                        <td>{{$data->kerja_ibu}}</td>
+                                        <td>{{$data->telp_ibu}}</td>
+                                        <td>{{$data->berkas}}</td>
+                                        <td>{{$data->foto}}</td>
                                         <td>
-                                            4
+                                            <a href="/berkas/edit/{{ $data->id }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>        
                                         </td>
-                                        <td>Input data</td>
-                                        <td class="align-middle">
-                                            <div class="progress"
-                                                data-height="4"
-                                                data-toggle="tooltip"
-                                                title="100%">
-                                                <div class="progress-bar bg-success"
-                                                    data-width="100%"></div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img alt="image"
-                                                src="{{ asset('img/avatar/avatar-2.png') }}"
-                                                class="rounded-circle"
-                                                width="35"
-                                                data-toggle="tooltip"
-                                                title="Rizal Fakhri">
-                                            <img alt="image"
-                                                src="{{ asset('img/avatar/avatar-5.png') }}"
-                                                class="rounded-circle"
-                                                width="35"
-                                                data-toggle="tooltip"
-                                                title="Isnap Kiswandi">
-                                            <img alt="image"
-                                                src="{{ asset('img/avatar/avatar-4.png') }}"
-                                                class="rounded-circle"
-                                                width="35"
-                                                data-toggle="tooltip"
-                                                title="Yudi Nawawi">
-                                            <img alt="image"
-                                                src="{{ asset('img/avatar/avatar-1.png') }}"
-                                                class="rounded-circle"
-                                                width="35"
-                                                data-toggle="tooltip"
-                                                title="Khaerul Anwar">
-                                        </td>
-                                        <td>
-                                            <div class="badge badge-success">Completed</div>
-                                        </td>
-                                        <td><button class="btn btn-primary"
-                                            data-toggle="modal"
-                                            data-target="#exampleModal">Lihat</button>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
+                            {{ $posts->links("pagination::bootstrap-4") }}
                         </div>
                     </div>
                 </div>
@@ -95,36 +97,6 @@
         </section>
     </div>
 
-
-<div class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    id="exampleModal">
-    <div class="modal-dialog"
-        role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer bg-whitesmoke br">
-                <button type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal">Close</button>
-                <button type="button"
-                    class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 @push('scripts')

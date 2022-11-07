@@ -1,6 +1,12 @@
 <?php
 
-use Illuminate\Auth\Events\Registered;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RegisController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UploadBerkasController;
+use App\Models\RegisModel;
+use App\Models\UploadModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,28 +21,61 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/auth-login');
-Route::get('/auth-login', function () {
-    return view('auth.login', ['type_menu' => 'auth']);
-});
-Route::get('/daftar', function () {
-    return view('auth.regis-mahasiswa', ['type_menu' => 'auth']);
-});
+Route::group(['namespace' => 'App\Http\Controllers'], function()
+{   
+    Route::get('/', 'LoginController@show')->name('login.show');
+    /**
+     * Home Routes\
+     */
+    Route::group(['middleware' => ['guest']], function() {
+        /**
+         * Register Routes
+         */
+        Route::get('/register', 'RegisController@show')->name('register.show');
+        Route::post('/register', 'RegisController@register')->name('register.perform');
+
+        /**
+         * Login Routes
+         */
+        // Route::get('/', 'LoginController@show')->name('login.show');
+        Route::post('/login', 'LoginController@perform')->name('login.perform');
+        
+
+    });
+
+    Route::group(['middleware' => ['auth']], function() {
+        /**
+         * Logout Routes
+         */
+        Route::get('/logout', 'LoginController@out')->name('login.out');
+    });
 
 
-Route::get('/dashboard', function () {
-    return view('halaman-mahasiswa.dashboard-mahasiswa', ['type_menu' => 'halaman-mahasiswa']);
+        /**
+         * Home Routes
+         */
+
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
+    
 });
 
-Route::get('/import-berkas', function () {
-    return view('halaman-mahasiswa.import-pengajuan', ['type_menu' => 'halaman-mahasiswa']);
-});
+// Route::post('login.perform', [LoginController::class,'perform'])->name('login.perform');
 
 Route::get('/akun-mahasiswa', function () {
     return view('halaman-mahasiswa.akun', ['type_menu' => 'halaman-mahasiswa']);
 });
 
+Route::get('/render-dashboard', [DashboardController::class,'render'])->name('render');
 
+Route::get('/upload-berkas', [UploadBerkasController::class,'render'])->name('render');
+Route::post('/berkas', [UploadBerkasController::class,'store'])->name('store');
+Route::post('/edit/berkas','UploadBerkasController@update');
+
+
+Route::resource('load',UploadBerkasController::class);
+
+Route::get('/berkas/edit/{id}','UploadBerkasController@edit');
 
 /*
 |--------------------------------------------------------------------------
